@@ -1,5 +1,5 @@
 # SimpleTapBot
-🖱️ clicker for [https://t.me/Simple_Tap_Bot](https://t.me/Simple_Tap_Bot/app?startapp=1717190976970)
+🖱️ clicker for [https://t.me/Simple_Tap_Bot](https://t.me/Simple_Tap_Bot/app?startapp=1719425182275)
 
 ## Features  
 | Feature                                                     | Supported  |
