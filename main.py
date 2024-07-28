@@ -8,9 +8,9 @@ import httpx, time, os, threading, random
 API_ID = 
 API_HASH = ''
 
-CLICKS_AMOUNT = 5
+CLICKS_AMOUNT = random.randint(27, 35)
 SLEEP_AFTER_TAP = 5
-SLEEP_NO_ENOUGHT_TAPS = 3600
+SLEEP_NO_ENOUGHT_TAPS = 3600 * random.randint(4, 8)
 
 if not os.path.exists('sessions'):
     os.mkdir('sessions')
@@ -321,15 +321,16 @@ while True:
                         )
                         app.start()
 
+                        bot_peer = app.resolve_peer('Simple_Tap_Bot')
                         web_view = app.invoke(StartBot(
-                            peer=app.resolve_peer('Simple_Tap_Bot'),
-                            bot=app.resolve_peer('Simple_Tap_Bot'),
+                            peer=bot_peer,
+                            bot=bot_peer,
                             random_id=random.randint(1000, 9999),
-                            start_param='1717785892732'
+                            start_param='1719425182275'
                         ))
                         web_view = app.invoke(RequestWebView(
-                            peer=app.resolve_peer('Simple_Tap_Bot'),
-                            bot=app.resolve_peer('Simple_Tap_Bot'),
+                            peer=bot_peer,
+                            bot=bot_peer,
                             platform='android',
                             from_bot_menu=False,
                             url='https://simpletap.app/'
@@ -338,6 +339,7 @@ while True:
                         user_id = app.get_me().id
                         initData = unquote(string=unquote(string=web_view.url.split('tgWebAppData=', maxsplit=1)[1].split('&tgWebAppVersion', maxsplit=1)[0]))
 
+                        app.stop()
                         threading.Thread(target=thread, args=(user_id, initData, i,)).start()
                     except:
                         logger.error(f'Cannot start proccess thread with "{session}" session.')
